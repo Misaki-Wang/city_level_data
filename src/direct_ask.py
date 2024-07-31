@@ -52,7 +52,7 @@ def extract_json_objects(text):
 
     return parsed_json_objects
 
-def get_target_value(city_year_country_list, output_file):
+def get_response(city_year_country_list, output_file, PROMPT = PROMPT):
     if os.path.exists(output_file):
         os.remove(output_file)
     for city, year, country in tqdm(city_year_country_list, desc="Direct Asking", leave=True):
@@ -74,7 +74,7 @@ def get_target_value(city_year_country_list, output_file):
         except (IOError, json.JSONDecodeError) as e:
             print(f"Error writing to file: {e}")
             
-    print(f"Direct ask target predictions written to: {output_file}")
+    print(f"Response from API written to: {output_file}")
 
 def clean_data(file_path, output_file, target_name = utils.target_column, prediction_name = utils.prediction_column):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -98,7 +98,7 @@ def combine_files(original_file, direct_asking_file, output_file, city_column=ut
         
         combined_df = pd.merge(original_df, predictions_df, left_on=[city_column, year_column, country_column], right_on=[city_column, year_column, country_column], how='left')
         
-        combined_df.drop(columns=[city_column, year_column, country_column], inplace=True)
+        # combined_df.drop(columns=[city_column, year_column, country_column], inplace=True)
         
         combined_df.to_csv(output_file, index=False, encoding='utf-8')
         print(f"Combined files written to: {output_file}")
@@ -112,7 +112,7 @@ def delete_files(*file_paths):
             print(f"Deleted file: {file_path}")
 
 def direct_ask_target_prediction(city_year_country_list, output_file=utils.direct_asking_file):
-    get_target_value(city_year_country_list, utils.da_json_file)
+    get_response(city_year_country_list, utils.da_json_file, PROMPT)
     clean_data(utils.da_json_file, utils.da_json_clean_file)
     combine_files(utils.processed_data_file, utils.da_json_clean_file, output_file)
     
