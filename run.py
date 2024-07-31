@@ -7,16 +7,13 @@ import src.utils as utils
 import src.ml as ml
 
 def main(tasks):
+    if "all" in tasks:
+        tasks = ['process_data', 'direct_ask', 'extract_features', 'target', 'location', 'rmse']
+
     if "process_data" in tasks:
         # Task 1: Process the data
-        dp.process_data(
-            utils.input_file,
-            utils.processed_data_file,
-            utils.city_column,
-            utils.country_column,
-            utils.year_column,
-            utils.target_column
-        )
+        dp.process_data(utils.input_file, utils.processed_data_file)
+    
     city_year_country_list = da.get_cities_years_country(utils.processed_data_file)
     
     if "direct_ask" in tasks:
@@ -32,10 +29,11 @@ def main(tasks):
         ehs.extract_hidden_state_target(city_year_country_list, utils.hidden_state_target_file)
         
     if "location" in tasks:
-        # Task 4: Extract features from LLM hidden state
+        # Task 5: Extract location features from LLM hidden state
         ehs.extract_hidden_state_location(city_year_country_list, utils.hidden_state_location_file)
         
     if "rmse" in tasks:
+        # Task 6: Calculate RMSE for all methods
         ml.calculate_rmse_all()
         
 
@@ -44,9 +42,9 @@ if __name__ == "__main__":
     parser.add_argument(
         '--tasks', 
         nargs='+', 
-        choices=['process_data', 'direct_ask', 'extract_features', 'target', 'location', 'rmse'], 
+        choices=['process_data', 'direct_ask', 'extract_features', 'target', 'location', 'rmse', 'all'], 
         required=True, 
-        help="Specify which tasks to execute. Choices are 'process_data', 'direct_ask', 'extract_features', 'target', 'location', 'rmse."
+        help="Specify which tasks to execute. Choices are 'process_data', 'direct_ask', 'extract_features', 'target', 'location', 'rmse', or 'all'."
     )
     args = parser.parse_args()
     main(args.tasks)

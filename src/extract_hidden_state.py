@@ -6,6 +6,7 @@ from scipy.stats import pearsonr
 import torch.nn as nn
 from tqdm import tqdm
 import src.utils as utils
+import os
 
 PROMPT_target = utils.PROMPT_target
 PROMPT_location = utils.PROMPT_location
@@ -58,6 +59,7 @@ def get_features_test(prompt, model, tokenizer):
     return extract_features(res).tolist()[0]
 
 def extract_hidden_state(city_year_country_list, output_file, PROMPT):
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
     model = AutoModelForCausalLM.from_pretrained(model_path, device_map="cuda:0", torch_dtype=torch.float16)
     

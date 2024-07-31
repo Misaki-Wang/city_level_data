@@ -4,6 +4,7 @@ import src.utils as utils
 from sklearn.model_selection import train_test_split, cross_val_predict
 from xgboost import XGBRegressor
 from sklearn.impute import SimpleImputer
+import os
 
 def calculate_rmse(df, target_column=utils.target_column, prediction_column=utils.prediction_column):
     # Ensure the target and prediction columns exist in the dataframe
@@ -92,6 +93,7 @@ def calculate_location_rmse():
 
 # calculate_rmse_all
 def calculate_rmse_all(output_file=utils.rmse_file):
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     rmse_avg = calculate_avg_rmse()
     rmse_direct_ask =  calculate_direct_ask_rmse()
     rmse_feature = calculate_feature_rmse()

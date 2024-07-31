@@ -55,6 +55,7 @@ def extract_json_objects(text):
 def get_response(city_year_country_list, output_file, PROMPT = PROMPT):
     if os.path.exists(output_file):
         os.remove(output_file)
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     for city, year, country in tqdm(city_year_country_list, desc="Direct Asking", leave=True):
         try:
             prompt_text = PROMPT.format(city=city, year=year, country=country)
@@ -77,6 +78,7 @@ def get_response(city_year_country_list, output_file, PROMPT = PROMPT):
     print(f"Response from API written to: {output_file}")
 
 def clean_data(file_path, output_file, target_name = utils.target_column, prediction_name = utils.prediction_column):
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     with open(file_path, 'r', encoding='utf-8') as f:
         json_lines = [json.loads(line) for line in f]
     predictions_df = pd.DataFrame(json_lines)
@@ -89,6 +91,7 @@ def clean_data(file_path, output_file, target_name = utils.target_column, predic
     print(f"Cleaned data written to: {output_file}")
 
 def combine_files(original_file, direct_asking_file, output_file, city_column=utils.city_column, year_column=utils.year_column, country_column=utils.country_column):
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     try:
         original_df = pd.read_csv(original_file, encoding='utf-8')
         
