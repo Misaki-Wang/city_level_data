@@ -66,10 +66,10 @@ Organize your answer in a JSON object containing the following keys:
 - city: The name of the city you are provided
 - year: The year you are provided
 - country: The country of the city you are provided
-- population: The population of the city, scaled from 0 to 10.0
-- GDP: The Gross Domestic Product of the city, scaled from 0 to 10.0
-- average annual temperature: The average annual temperature of the city, scaled from 0 to 10.0
-- built-up area: The built-up area of the city, scaled from 0 to 10.0
+- population: The population of the city, scaled from 0.0 to 10.0
+- GDP: The Gross Domestic Product of the city, scaled from 0.0 to 10.0
+- average annual temperature: The average annual temperature of the city, scaled from 0.0 to 10.0
+- built-up area: The built-up area of the city, scaled from 0.0 to 10.0
 
 The data is as follows:
 - city: {city}

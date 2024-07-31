@@ -32,7 +32,7 @@ def avg_prediction(processed_data_file = utils.processed_data_file, target_colum
     return df
 
 # machine learning task
-def perform_ml_task_and_add_predictions(data_file, features, target_column='energy_consumption', prediction_column='energy_consumption_pred'):
+def perform_ml_task_and_add_predictions(data_file, features, target_column=utils.target_column, prediction_column=utils.prediction_column):
     # Read the processed data file into a DataFrame
     df = pd.read_csv(data_file, encoding='utf-8')
     
