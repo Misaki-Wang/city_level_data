@@ -43,7 +43,7 @@ Organize your answer in a JSON object containing the following keys:
 - city: The name of the city you are provided
 - year: The year you are provided
 - country: The country of the city you are provided
-- CO2_emissions: The predicted CO2 emissions value for the city in the given year, expressed in metric tons of CO2 equivalent
+- CO2_emission: The predicted CO2 emissions value for the city in the given year, expressed in metric tons of CO2 equivalent
 
 The data is as follows:
 - city: {city}

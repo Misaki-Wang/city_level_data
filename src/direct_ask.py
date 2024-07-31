@@ -84,7 +84,6 @@ def clean_data(file_path, output_file, target_name = utils.target_column, predic
     predictions_df = pd.DataFrame(json_lines)
     
     predictions_df.rename(columns={target_name: prediction_name}, inplace=True)
-    
     predictions_df = predictions_df[predictions_df[prediction_name].apply(pd.to_numeric, errors='coerce').notna()]
     
     predictions_df.to_json(output_file, orient='records', lines=True, force_ascii=False)
