@@ -1,3 +1,18 @@
+Run the command in the root directory of the project, view more options in run.py. 
+
+```
+python -u "run.py" --tasks all
+```
+
+Original Data format:
+
+```
+city, year, country, target
+```
+
+Folder structure:
+
+```
 .
 ├── data
 │   ├── co2
@@ -9,29 +24,10 @@
 │       ├── processed
 │       │   └── processed_data.csv
 │       └── raw
-│           ├── energy_consumption.csv
-│           └── Final energy consumption (10000 tons of standard coal).xlsx
+│           └── energy_consumption.csv
 ├── model
 │   └── LLM-Research
 │       └── Meta-Llama-3___1-8B-Instruct
-│           ├── config.json
-│           ├── configuration.json
-│           ├── generation_config.json
-│           ├── LICENSE
-│           ├── model-00001-of-00004.safetensors
-│           ├── model-00002-of-00004.safetensors
-│           ├── model-00003-of-00004.safetensors
-│           ├── model-00004-of-00004.safetensors
-│           ├── model.safetensors.index.json
-│           ├── original
-│           │   ├── consolidated.00.pth
-│           │   ├── params.json
-│           │   └── tokenizer.model
-│           ├── README.md
-│           ├── special_tokens_map.json
-│           ├── tokenizer_config.json
-│           ├── tokenizer.json
-│           └── USE_POLICY.md
 ├── README.md
 ├── res
 │   ├── co2
@@ -52,19 +48,11 @@
 │           └── feature_json_file.json
 ├── run.py
 └── src
-    ├── data.ipynb
     ├── data_processing.py
     ├── direct_ask.py
     ├── extract_feature.py
     ├── extract_hidden_state.py
     ├── ml.py
-    ├── __pycache__
-    │   ├── data_processing.cpython-310.pyc
-    │   ├── direct_ask.cpython-310.pyc
-    │   ├── extract_feature.cpython-310.pyc
-    │   ├── extract_hidden_state.cpython-310.pyc
-    │   ├── ml.cpython-310.pyc
-    │   └── utils.cpython-310.pyc
     └── utils.py
 
-18 directories, 49 files
+```
